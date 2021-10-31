@@ -3,6 +3,7 @@ local source = {}
 
 source.new = function()
     local self = setmetatable({}, {__index = source})
+    self.cache = {}
     return self
 end
 
@@ -40,14 +41,18 @@ local function get_vimwiki_tags()
 end
 
 function source.complete(self, _, callback)
-    if not self.cache then
-        self.cache = get_vimwiki_tags()
-        if type(self.cache) ~= "table" then
+    local bufnr = vim.api.nvim_get_current_buf()
+    local items = {}
+
+    if not self.cache[bufnr] then
+        items = get_vimwiki_tags()
+        if type(items) ~= "table" then
             return callback()
         end
     end
 
-    callback({items = self.cache or {}, isIncomplete = false})
+    callback({items = items or {}, isIncomplete = false})
+    items = self.cache[bufnr]
 end
 
 function source.resolve(completion_item, callback)
