@@ -7,7 +7,7 @@ Nvim cmp source for Vimwiki tags.
 ```lua
 require'cmp'.setup {
   sources = {
-    { name = 'emoji' }
+    { name = 'vimwiki-tags' }
   }
 }
 ```
