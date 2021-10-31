@@ -30,12 +30,9 @@ local function get_vimwiki_tags()
 
     for _, v in pairs(lines) do
         local tag = vim.fn.matchstr(v, "^\\S\\+")
-        if (string.match(tag, "^!_.+")) then
-        else
-            if (not used[tag]) then
-                table.insert(it, {label = ":" .. tag .. ":"})
-                used[tag] = true
-            end
+        if (not string.match(tag, "^!_.+") and not used[tag]) then
+            table.insert(it, {label = ":" .. tag .. ":"})
+            used[tag] = true
         end
     end
 
