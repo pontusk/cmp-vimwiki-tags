@@ -21,15 +21,15 @@ I use this shell script to launch Vimwiki. It opens the Vimwiki directory and th
 ```bash
 function note_fn() {
   if [[ "$1" == "" ]]; then
-    cd "$vimwiki_path" && vim -c "e index.md" .
+    cd "$vimwiki_path" && nvim -c "e index.md" .
   elif [[ "$2" == "" ]]; then
-    cd "$vimwiki_path" && vim -c "e $1.md" .
+    cd "$vimwiki_path" && nvim -c "e $1.md" .
   else
     tags=":"
     for tag in "${@:2}"; do
       tags="$tags$tag:"
     done
-    cd "$vimwiki_path" && vim -c "e $1.md | execute 'normal ggO$tags'" .
+    cd "$vimwiki_path" && nvim -c "e $1.md | execute 'normal ggO$tags'" .
   fi
 }
 alias note=note_fn
