@@ -49,10 +49,12 @@ function source.complete(self, _, callback)
         if type(items) ~= "table" then
             return callback()
         end
+        self.cache[bufnr] = items
+    else
+        items = self.cache[bufnr]
     end
 
     callback({items = items or {}, isIncomplete = false})
-    items = self.cache[bufnr]
 end
 
 function source.resolve(completion_item, callback)
