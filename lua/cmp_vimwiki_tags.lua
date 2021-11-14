@@ -57,11 +57,11 @@ function source.complete(self, _, callback)
     callback({items = items or {}, isIncomplete = false})
 end
 
-function source.resolve(completion_item, callback)
+function source.resolve(_, completion_item, callback)
     callback(completion_item)
 end
 
-function source.execute(completion_item, callback)
+function source.execute(_, completion_item, callback)
     callback(completion_item)
 end
 
