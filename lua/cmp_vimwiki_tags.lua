@@ -20,7 +20,7 @@ function source.get_trigger_characters()
 end
 
 function source.get_keyword_pattern()
-    return [=[\%(\s\|^\)\zs:[[:alnum:]_\-\+]*:\?]=]
+    return [=[:[[:alnum:]_\-\+]*:\?]=]
 end
 
 local function get_vimwiki_tags()
