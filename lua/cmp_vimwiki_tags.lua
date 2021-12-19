@@ -19,9 +19,9 @@ function source.get_trigger_characters()
     return {":"}
 end
 
-function source.get_keyword_pattern()
-    return [=[:[[:alnum:]_\-\+]*:\?]=]
-end
+-- function source.get_keyword_pattern()
+--     return [=[:[[:alnum:]_\-\+]*:\?]=]
+-- end
 
 local function get_vimwiki_tags()
     local file = ".vimwiki_tags"
