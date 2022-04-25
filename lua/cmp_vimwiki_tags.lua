@@ -1,5 +1,20 @@
-local utils = require("utils")
 local source = {}
+
+local function file_exists(file)
+    local res = os.execute("if [ -f " .. file .. " ]; then exit 0; else exit 1; fi")
+    return res == 0
+end
+
+local function lines_from(file)
+    if not file_exists(file) then
+        return {}
+    end
+    local lines = {}
+    for line in io.lines(file) do
+        lines[#lines + 1] = line
+    end
+    return lines
+end
 
 source.new = function()
     local self = setmetatable({}, {__index = source})
@@ -25,7 +40,7 @@ end
 
 local function get_vimwiki_tags()
     local file = ".vimwiki_tags"
-    local lines = utils.lines_from(file)
+    local lines = lines_from(file)
     local it = {}
     local used = {}
 
